@@ -1,0 +1,78 @@
+﻿@model IEnumerable<StudentWebApplication.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>StudentRecords</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentStudyTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                <p>
+                    <\a>asp-action="AddOrEdit" class="btn btn-sm btn-success"
+                     class="fa-solid fa-plus"></>>Create New
+                    </\a> 
+                </p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentStudyTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <form>asp-actions="Delete">
+                <a asp-action="AddOrEdit" asp-route-id="@item.StudentId" class="=btn btn-warning">
+                   <i class="fa-solid fa-pen-to-square"></i>
+                    </a> 
+                    <form asp-action="Delete" asp-route-id="@item.StudentId">
+                        <button type="submit" class="btn btn-danger">
+                            <onclick="return confirm ('Are you sure to delete this record?'')">
+                            <i class="far fa-trash-alt"></i>
+                           
+                        </button>
+                    </form>
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
